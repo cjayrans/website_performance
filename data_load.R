@@ -6,17 +6,19 @@ options(rsconnect.http.trace.json = TRUE)
 
 # Connect Rstudio to SHinyApps.io account
 rsconnect::setAccountInfo(name= '<NAME>' , token='<TOKEN>', secret='<SECRET>')
+rsconnect::setAccountInfo(name='cransford-shiny', token='EAE6778C1C0DEDD79910FB10FE3B222B', secret='ErBWsGCfvKUfuHVTNcQWbkR2w/DZKvTDD88NYJsJ')
 
 ## Create table containing data summarized for each month, and site page
 month <- rep(seq(as.Date('2018-02-01'), Sys.Date(), by='month'), 3)
-site_page <- rep(c("landing_page","clearance_page","inventory_page"),12)
-total_arrivals <- round(rnorm(36, mean = 100000, sd=1200))
-step_1 <- round(rnorm(36, mean=80000, sd=900))
-step_2 <- round(rnorm(36, mean=70000, sd=1200))
-step_3 <- round(rnorm(36, mean=62000, sd=500))
-buys <- round(rnorm(36, mean=53000, sd=600))
-total_revenue <- round(rnorm(36, mean=7155000, sd=100000))
-gross_spread <- round(rnorm(36, mean=2647350, sd=50000))
+num_months <- length(month)
+site_page <- rep(c("landing_page","clearance_page","inventory_page"),num_months/3)
+total_arrivals <- round(rnorm(num_months, mean = 100000, sd=1200))
+step_1 <- round(rnorm(num_months, mean=80000, sd=900))
+step_2 <- round(rnorm(num_months, mean=70000, sd=1200))
+step_3 <- round(rnorm(num_months, mean=62000, sd=500))
+buys <- round(rnorm(num_months, mean=53000, sd=600))
+total_revenue <- round(rnorm(num_months, mean=7155000, sd=100000))
+gross_spread <- round(rnorm(num_months, mean=2647350, sd=50000))
 
 # Combine all vectors created above into a single data frame
 df_pages <- data.frame(month=month, site_page=site_page, total_arrivals=total_arrivals, step_1=step_1, step_2=step_2, step_3=step_3,
