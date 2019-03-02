@@ -99,7 +99,7 @@ shinyServer(function(input, output) {
                                          rownames= FALSE,
                                          options = list(scrollX=TRUE, rownames= FALSE,pageLength = 50,lengthMenu = c(10, 50, 100, 200)),{
                                            isolate(    
-                                             organic_summ_sales
+                                             organic_summ_sales1In
                                            )
                                          })
   
@@ -119,6 +119,17 @@ shinyServer(function(input, output) {
   organic_summ_sales2 <- reactive({
     
     org_summ_sales_temp2 <- organic_summ_page_specific[(organic_summ_page_specific$site_page == input$pageFilterSales),
+<<<<<<< HEAD
+                                                       c('month','site_page','buys','total_revenue','gross_spread','gross_spread_perc','spread_per_unit','cost_per_unit','salePrice_per_unit')]
+    
+    org_summ_num_temp2 <- prettyNum(org_summ_sales_temp2$buys, big.mark=",")
+    
+    org_summ_sales_dollars2 <- lapply(org_summ_sales_temp2[,
+                                                                        c('total_revenue','gross_spread','spread_per_unit','cost_per_unit','salePrice_per_unit')],
+                                                   function(x) dollar_format()(x))
+    
+    org_summ_sales_perc2 <- lapply(org_summ_sales_temp2[, c('gross_spread_perc')], function(x) percent(x))
+=======
                                c('month','site_page','buys','total_revenue','gross_spread','gross_spread_perc','spread_per_unit','cost_per_unit','salePrice_per_unit')]
     
     org_summ_num_temp2 <- prettyNum(org_summ_sales_temp2$buys, big.mark=",")
@@ -128,6 +139,7 @@ shinyServer(function(input, output) {
                                                                                                                                      2, function(x) dollar_format()(x)))
                                                    
     org_summ_sales_perc2 <- as.data.frame(lapply(org_summ_sales_temp2[, c('gross_spread_perc')], function(x) percent(x)))
+>>>>>>> 8dacf2656ec7a2561ce3d2c9e6fb33941d630ddf
     
     # cbind(org_summ_sales_temp2[,c('Monthly','buy_count','lots_sold')], org_summ_sales_temp3, org_summ_sales_temp2[,c('spread_perc','success_rate')])
     cbind(org_summ_sales_temp2[,c('month','site_page')], org_summ_num_temp2, org_summ_sales_dollars2, org_summ_sales_perc2)
