@@ -1,7 +1,3 @@
-#################### ui.R
-ga_updatedTS <- file.info("/srv/shiny-server/ShinyAppData/SI/InstaQuote_Pages/google_analytics_daily_users.feather")$mtime
-
-
 # UI.R
 FullPage <- dashboardPage(
   skin = "blue",
