@@ -6,7 +6,6 @@ options(rsconnect.http.trace.json = TRUE)
 
 # Connect Rstudio to SHinyApps.io account
 rsconnect::setAccountInfo(name= '<NAME>' , token='<TOKEN>', secret='<SECRET>')
-rsconnect::setAccountInfo(name='cransford-shiny', token='EAE6778C1C0DEDD79910FB10FE3B222B', secret='ErBWsGCfvKUfuHVTNcQWbkR2w/DZKvTDD88NYJsJ')
 
 ## Create table containing data summarized for each month, and site page
 month <- rep(seq(as.Date('2018-02-01'), Sys.Date(), by='month'), 3)
